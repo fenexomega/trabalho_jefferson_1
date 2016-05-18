@@ -4,17 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Início</title>
+<title>Funcionario Inserido</title>
 </head>
 <body>
-
-<h2>Menu</h2>
-
-<a href="helloSpring"> Hello Spring! </a> <br />
-
-<a href="inserirFuncionarioFormulario"> Inserir Funcionario </a> <br />
-
-<a href="listarFuncionario">Listar Funcionarios</a>
-
+	<h2>Funcionario inserido com sucesso.</h2>
 </body>
 </html>

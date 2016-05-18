@@ -4,18 +4,25 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ufc.dao.FuncionarioDAOMem;
+import br.ufc.dao.IFuncionarioDAO;
 import br.ufc.model.Funcionario;
 
+@Transactional
 @Controller
 public class FuncionarioController {
 	
-	
+	@Autowired
+	@Qualifier(value="funcionarioDAO")
+	private IFuncionarioDAO fdao;
 	
 	@RequestMapping("/inserirFuncionarioFormulario")
 	public String inserirFuncionarioFormulario()
@@ -32,8 +39,7 @@ public class FuncionarioController {
 			return "funcionario/inserir_funcionario_formulario";
 		}
 		
-		FuncionarioDAOMem dao = FuncionarioDAOMem.getInstance();
-		dao.adicionar(f);
+		fdao.inserir(f);
 		
 		return "redirect:listarFuncionario";
 	}
@@ -41,8 +47,7 @@ public class FuncionarioController {
 	@RequestMapping("/listarFuncionario")
 	public String listarFuncionario(Model model)
 	{
-		FuncionarioDAOMem dao = FuncionarioDAOMem.getInstance();
-		List<Funcionario> lista = dao.listar();
+		List<Funcionario> lista = fdao.listar();
 		model.addAttribute("lista", lista);
 		
 		return "funcionario/listar_funcionario";
@@ -51,17 +56,14 @@ public class FuncionarioController {
 	@RequestMapping("/apagarFuncionario")
 	public String apagarFuncionario(Long id)
 	{
-		FuncionarioDAOMem dao = FuncionarioDAOMem.getInstance();
-		dao.excluir(id);
+		fdao.apagar(id);
 		return "redirect:listarFuncionario";
 	}
 	
 	@RequestMapping("/alterarFuncionarioFormulario")
 	public String alterarFuncionarioFormulario(Long id, Model model)
 	{
-		FuncionarioDAOMem dao = FuncionarioDAOMem.getInstance();
-		List<Funcionario> lista = dao.listar();
-		Funcionario f = lista.get(id.intValue());
+		Funcionario f = fdao.recuperar(id);
 		model.addAttribute("funcionario", f);
 		
 		return "funcionario/alterar_funcionario_formulario";
@@ -70,8 +72,7 @@ public class FuncionarioController {
 	@RequestMapping("/alterarFuncionario")
 	public String alterarFuncionario(Funcionario f)
 	{
-		FuncionarioDAOMem dao = FuncionarioDAOMem.getInstance();
-		dao.alterar(f.getId(), f);
+		fdao.alterar(f);
 		System.out.println("Id: " + f.getId());
 		
 		return "redirect:listarFuncionario";

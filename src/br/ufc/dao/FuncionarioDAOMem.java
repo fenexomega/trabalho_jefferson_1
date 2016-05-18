@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.ufc.model.Funcionario;
 
-public class FuncionarioDAOMem {
+public class FuncionarioDAOMem implements IFuncionarioDAO {
 	
 	private static FuncionarioDAOMem instance;
 	private List<Funcionario> lista;
@@ -24,35 +24,38 @@ public class FuncionarioDAOMem {
 		lista = new ArrayList<Funcionario>();
 	}
 
-	public void adicionar(Funcionario f)
+	public void inserir(Funcionario funcionario)
 	{
-		lista.add(f);
+		lista.add(funcionario);
 	}
 	
-	public void excluir(Long id)
+	public void alterar(Funcionario funcionario)
 	{
-		lista.remove(id.intValue());
-	}
-	
-	public void alterar(Long id,Funcionario f)
-	{
-	 	Funcionario fOld = lista.get(id.intValue());
-	 	fOld.setNome(f.getNome());
-	 	fOld.setSalario(f.getSalario());
+	 	Funcionario fOld = lista.get((int) funcionario.getId());
+	 	fOld.setNome(funcionario.getNome());
+	 	fOld.setSalario(funcionario.getSalario());
 	 	
 	}
 	
-	public Funcionario recuperar(Long id)
+	public Funcionario recuperar(long id)
 	{
-		return lista.get(id.intValue());
+		return lista.get((int) id);
 	}
 	
 	public List<Funcionario> listar()
 	{
+		
 		for (int i = 0; i < lista.size(); i++)
 		{
 			lista.get(i).setId(i);
 		}
 		return lista;
+	}
+
+	@Override
+	public void apagar(long id) {
+		// TODO Auto-generated method stub
+		lista.remove(id);
+
 	}
 }

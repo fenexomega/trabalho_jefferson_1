@@ -4,17 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Início</title>
+<title>Formulário Login</title>
 </head>
 <body>
-
-<h2>Menu</h2>
-
-<a href="helloSpring"> Hello Spring! </a> <br />
-
-<a href="inserirFuncionarioFormulario"> Inserir Funcionario </a> <br />
-
-<a href="listarFuncionario">Listar Funcionarios</a>
-
+	<form action="login" method="post">
+		Login: <input name="login" type="text" /> <br />
+		Senha: <input name="senha" type="password" /> <br />
+		<input type="submit" value="Efetuar Login" />
+	</form>
+ 
 </body>
 </html>
