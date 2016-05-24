@@ -2,6 +2,7 @@ package br.ufc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,12 @@ public class FuncionarioController {
 	}
 	
 	@RequestMapping("/listarFuncionario")
-	public String listarFuncionario(Model model)
+	public String listarFuncionario(Model model,HttpSession session)
 	{
+		Funcionario candidato = (Funcionario) session.getAttribute("funcionario_logado");
 		List<Funcionario> lista = fdao.listar();
 		model.addAttribute("lista", lista);
+		model.addAttribute("funcionario_logado",candidato);
 		
 		return "funcionario/listar_funcionario";
 	}
@@ -76,6 +79,12 @@ public class FuncionarioController {
 		System.out.println("Id: " + f.getId());
 		
 		return "redirect:listarFuncionario";
+	}
+	
+	@RequestMapping("/menu")
+	public String menu()
+	{
+		return "funcionario/index";
 	}
 	
 }

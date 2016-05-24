@@ -15,4 +15,6 @@ public interface IFuncionarioDAO {
 	public void apagar(long id);
 	
 	public List<Funcionario> listar();
+
+	public Funcionario recuperar(String login);
 }

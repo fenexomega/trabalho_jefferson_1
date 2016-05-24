@@ -10,8 +10,13 @@
 
 <h2>Menu</h2>
 
-<a href="loginFormulario">Login </a> <br />
+<a href="helloSpring"> Hello Spring! </a> <br />
 
+<a href="inserirFuncionarioFormulario"> Inserir Funcionario </a> <br />
+
+<a href="listarFuncionario">Listar Funcionarios</a>
+
+<a href="logout">Logout</a>
 
 </body>
 </html>

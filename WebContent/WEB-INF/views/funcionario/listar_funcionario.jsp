@@ -8,7 +8,7 @@
 <title>Listar Funcionario</title>
 </head>
 <body>
-
+<b>Funcionario:</b>${funcionario_logado.nome} <br/>
 <table border="1">
 	<c:forEach var="f" items="${lista}">
 	<tr>

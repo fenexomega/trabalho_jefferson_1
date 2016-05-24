@@ -18,6 +18,10 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<context:component-scan base-package="br.ufc.controller" />
 	<mvc:annotation-driven />
 
+	<mvc:interceptors>
+		<bean class="br.ufc.interceptor.InterceptadorGeral"/>
+	</mvc:interceptors>
+	
 	<bean id="funcionarioDAO" class="br.ufc.dao.FuncionarioDAOHib"/>
 	<!--<bean id="alunoDAO" class="br.ufc.dao.AlunoDAOHib"/>-->
 	
@@ -25,7 +29,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/java_web_si" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="root" />
 	</bean> 
 	
 	
